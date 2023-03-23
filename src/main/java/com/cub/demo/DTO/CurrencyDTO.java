@@ -1,13 +1,13 @@
 package com.cub.demo.dto;
 
-public class BpiCurrencyDTO {
+public class CurrencyDTO {
 
-	String code;
-	String cname;
-	String symbol;
-	String rate;
-	String description;
-	Float rate_float;
+	private String cname;
+	private String code;
+	private String symbol;
+	private String rate;
+	private String description;
+	private Float rate_float;
 
 	public String getCode() {
 		return code;
@@ -56,7 +56,5 @@ public class BpiCurrencyDTO {
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	
-	
 
 }

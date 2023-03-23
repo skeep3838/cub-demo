@@ -1,4 +1,4 @@
-package com.cub.demo.DTO;
+package com.cub.demo.dto;
 
 import java.util.HashMap;
 import java.util.Map;

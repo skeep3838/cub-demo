@@ -1,4 +1,4 @@
-package com.cub.demo.DTO;
+package com.cub.demo.dto;
 
 public class TimeDTO {
 
