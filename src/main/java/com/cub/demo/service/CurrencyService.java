@@ -19,7 +19,6 @@ import com.cub.demo.entity.CurrencyEneity;
 import com.cub.demo.repository.CurrencyRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Transactional
 @Service
 public class CurrencyService {
 	protected static final ObjectMapper mapper = new ObjectMapper();
@@ -29,8 +28,10 @@ public class CurrencyService {
 
 	/**
 	 * 打coindesk API 並新增
+	 * 
 	 * @return
 	 */
+	@Transactional
 	public List<CurrencyEneity> coindeskAndAdd() {
 
 		List<CurrencyEneity> currencyList = new ArrayList<>();
@@ -40,7 +41,7 @@ public class CurrencyService {
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> responseEntity = restTemplate
 				.getForEntity("https://api.coindesk.com/v1/bpi/currentprice.json", String.class);
-		
+
 		try {
 			coindeskResp = mapper.readValue(responseEntity.getBody(), CoindeskDTO.class);
 			Date time = df1.parse(coindeskResp.getTime().getUpdatedISO());
@@ -63,9 +64,11 @@ public class CurrencyService {
 
 	/**
 	 * 新增幣別
+	 * 
 	 * @param entity
 	 * @return
 	 */
+	@Transactional
 	public CurrencyEneity addCoindesk(CurrencyEneity entity) {
 		try {
 			entity.setUpdatedTime(new Date());
@@ -79,6 +82,7 @@ public class CurrencyService {
 
 	/**
 	 * 查詢所有幣別
+	 * 
 	 * @return
 	 */
 	public List<CurrencyEneity> selectAllCoindesk() {
@@ -87,9 +91,11 @@ public class CurrencyService {
 
 	/**
 	 * 更新幣別
+	 * 
 	 * @param entity
 	 * @return
 	 */
+	@Transactional
 	public CurrencyEneity updateCoindesk(CurrencyEneity entity) {
 		Optional<CurrencyEneity> query = currencyRepository.findById(entity.getId());
 		if (query.isEmpty()) {
@@ -101,9 +107,11 @@ public class CurrencyService {
 
 	/**
 	 * 刪除幣別
+	 * 
 	 * @param id
 	 * @return
 	 */
+	@Transactional
 	public Boolean deleteCoindesk(Integer id) {
 		currencyRepository.deleteById(id);
 		return true;
